@@ -41,7 +41,7 @@ class Linear_Regression():
         
         #defines an array of random floats between 0 and 1 for the slopes
         slopes = np.random.rand(data.shape[1])
-        
+        reg_param = 5
         #Gradient Descent process
         for i in range(self.iterations):
 
@@ -60,7 +60,7 @@ class Linear_Regression():
             # and updates the slope 
             for i in range(arr.shape[0]):
                 d_slope = (-2/(arr[i].shape[0])) * sum(arr[i] * errors)
-                slopes[i] = slopes[i] - (self.alpha * d_slope)
+                slopes[i] = slopes[i]*(1-(self.alpha*(reg_param/(arr[i].shape[0])))) - (self.alpha * d_slope)
             
             # calculates the partial derivative with respect to the constant
             # and updates the constant 
